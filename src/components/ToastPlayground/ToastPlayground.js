@@ -11,6 +11,11 @@ function ToastPlayground() {
 	const [message, setMessage] = React.useState('');
 	const [variant, setVariant] = React.useState('notice');
 	const [showToast, setShowToast] = React.useState(false);
+	function handleDismiss(event) {
+		event.preventDefault();
+		console.log('Dismissed');
+		setShowToast(false);
+	}
 
 	return (
 		<div className={styles.wrapper}>
@@ -19,11 +24,7 @@ function ToastPlayground() {
 				<h1>Toast Playground</h1>
 			</header>
 			{showToast === true && (
-				<Toast
-					variant={variant}
-					showToast={showToast}
-					setShowToast={setShowToast}
-				>
+				<Toast variant={variant} handleDismiss={handleDismiss}>
 					{message}
 				</Toast>
 			)}
